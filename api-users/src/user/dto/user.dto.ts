@@ -1,4 +1,7 @@
+import { IsNotEmpty, IsString } from "class-validator";
+
 export class UserDTO {
+    @IsNotEmpty()
     readonly name: String;
     readonly last_name: String;
     readonly email: String;

@@ -21,6 +21,25 @@ let UserService = class UserService {
         this.users.push(user);
         return user;
     }
+    findAll() {
+        return this.users;
+    }
+    findUser(id) {
+        return this.users.find((u) => u.id === id);
+    }
+    findUserByEmail(email) {
+        console.log(typeof email);
+        return this.users.find((u) => u.email === email);
+    }
+    updateUser(email, user) {
+        const newUser = { email, ...user };
+        this.users = this.users.map((u) => (u.email === email ? newUser : u));
+        return newUser;
+    }
+    deleteUser(email) {
+        this.users = this.users.filter((u) => u.email !== email);
+        return 'User deleted';
+    }
 };
 exports.UserService = UserService;
 exports.UserService = UserService = __decorate([

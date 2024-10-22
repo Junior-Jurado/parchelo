@@ -17,4 +17,9 @@ export declare class UserService {
         category: import("./dto/user.dto").Category[];
         id: any;
     };
+    findAll(): IUser[];
+    findUser(id: String): IUser;
+    findUserByEmail(email: String): IUser;
+    updateUser(email: String, user: UserDTO): UserDTO;
+    deleteUser(email: String): String;
 }
