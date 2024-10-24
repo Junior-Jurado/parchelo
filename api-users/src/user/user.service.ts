@@ -1,41 +1,50 @@
-import { Injectable } from '@nestjs/common';
+import { HttpStatus, Injectable } from '@nestjs/common';
 import { UserDTO } from './dto/user.dto';
 import { IUser } from '../common/interfaces/user.interface';
+import * as bcrypt from 'bcrypt';
 import { v4 as uuidv4} from 'uuid';
+import { InjectModel } from '@nestjs/mongoose';
+import { USER } from 'src/common/models/models';
+import { Model } from 'mongoose';
 
 @Injectable()
 export class UserService{
+    constructor(@InjectModel(USER.name) private readonly model: Model<IUser>){
+
+    }
 
     users: IUser[] = [];
-    create(userDTO: UserDTO){
-        const user = {
-            id: uuidv4(),
-            ...userDTO
-        };
-        this.users.push(user);
-        return user;
+
+    async hashPassword(password: String):Promise<String>{
+        const salt = await bcrypt.genSalt(10);
+        return await bcrypt.hash(password, salt);
     }
 
-    findAll(): IUser[] {
-        return this.users;
+    async create(userDTO: UserDTO): Promise<IUser>{
+        const hash = await this.hashPassword(userDTO.password);
+        const newUser = new this.model({...userDTO, password: hash});
+        return await newUser.save();
     }
 
-    findUser(id: String): IUser {
-        return this.users.find((u)=>u.id === id);
+
+    async findAll(): Promise<IUser[]>{
+        return await this.model.find();
     }
 
-    findUserByEmail(email: String): IUser{
-        console.log(typeof email);
-        return this.users.find((u)=> u.email === email);
+    async findUserByEmail(email: String): Promise<IUser>{
+        return this.model.findOne({email: email});
     }
 
-    updateUser(email: String, user: UserDTO): UserDTO {
-        const newUser = {email, ...user};
-        this.users = this.users.map((u)=>(u.email===email? newUser:u));
-        return newUser;
+    async updateUser(email: String, user: UserDTO): Promise<IUser> {
+        const hash = await this.hashPassword(user.password);
+        const userUpdated = {...user, password: hash};
+        return await this.model.findOneAndUpdate({email: email}, user, {new: true})
+
     }
-    deleteUser(email: String): String {
-        this.users = this.users.filter((u)=> u.email !== email);
-        return 'User deleted';
+
+    async deleteUser(email: String) {
+        await this.model.findOneAndDelete(email);
+        return {status: HttpStatus.OK, msg:'User Deleted'};
     }
+
 }

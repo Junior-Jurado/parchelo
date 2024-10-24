@@ -5,44 +5,53 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
     else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+var __param = (this && this.__param) || function (paramIndex, decorator) {
+    return function (target, key) { decorator(target, key, paramIndex); }
+};
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.UserService = void 0;
 const common_1 = require("@nestjs/common");
-const uuid_1 = require("uuid");
+const bcrypt = require("bcrypt");
+const mongoose_1 = require("@nestjs/mongoose");
+const models_1 = require("../common/models/models");
+const mongoose_2 = require("mongoose");
 let UserService = class UserService {
-    constructor() {
+    constructor(model) {
+        this.model = model;
         this.users = [];
     }
-    create(userDTO) {
-        const user = {
-            id: (0, uuid_1.v4)(),
-            ...userDTO
-        };
-        this.users.push(user);
-        return user;
+    async hashPassword(password) {
+        const salt = await bcrypt.genSalt(10);
+        return await bcrypt.hash(password, salt);
     }
-    findAll() {
-        return this.users;
+    async create(userDTO) {
+        const hash = await this.hashPassword(userDTO.password);
+        const newUser = new this.model({ ...userDTO, password: hash });
+        return await newUser.save();
     }
-    findUser(id) {
-        return this.users.find((u) => u.id === id);
+    async findAll() {
+        return await this.model.find();
     }
-    findUserByEmail(email) {
-        console.log(typeof email);
-        return this.users.find((u) => u.email === email);
+    async findUserByEmail(email) {
+        return this.model.findOne({ email: email });
     }
-    updateUser(email, user) {
-        const newUser = { email, ...user };
-        this.users = this.users.map((u) => (u.email === email ? newUser : u));
-        return newUser;
+    async updateUser(email, user) {
+        const hash = await this.hashPassword(user.password);
+        const userUpdated = { ...user, password: hash };
+        return await this.model.findOneAndUpdate({ email: email }, user, { new: true });
     }
-    deleteUser(email) {
-        this.users = this.users.filter((u) => u.email !== email);
-        return 'User deleted';
+    async deleteUser(email) {
+        await this.model.findOneAndDelete(email);
+        return { status: common_1.HttpStatus.OK, msg: 'User Deleted' };
     }
 };
 exports.UserService = UserService;
 exports.UserService = UserService = __decorate([
-    (0, common_1.Injectable)()
+    (0, common_1.Injectable)(),
+    __param(0, (0, mongoose_1.InjectModel)(models_1.USER.name)),
+    __metadata("design:paramtypes", [mongoose_2.Model])
 ], UserService);
 //# sourceMappingURL=user.service.js.map

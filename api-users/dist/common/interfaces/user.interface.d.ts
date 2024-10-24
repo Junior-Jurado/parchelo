@@ -1,4 +1,4 @@
-export interface IUser {
+export interface IUser extends Document {
     id?: String;
     name: String;
     last_name: String;
