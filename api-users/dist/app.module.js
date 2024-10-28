@@ -13,6 +13,7 @@ const app_service_1 = require("./app.service");
 const user_module_1 = require("./user/user.module");
 const config_1 = require("@nestjs/config");
 const mongoose_1 = require("@nestjs/mongoose");
+const event_module_1 = require("./event/event.module");
 let AppModule = class AppModule {
 };
 exports.AppModule = AppModule;
@@ -24,7 +25,8 @@ exports.AppModule = AppModule = __decorate([
                 envFilePath: ['.env.development'],
                 isGlobal: true,
             }),
-            mongoose_1.MongooseModule.forRoot(process.env.URI_MONGODB)
+            mongoose_1.MongooseModule.forRoot(process.env.URI_MONGODB),
+            event_module_1.EventModule
         ],
         controllers: [app_controller_1.AppController],
         providers: [app_service_1.AppService],
