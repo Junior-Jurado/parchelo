@@ -25,6 +25,22 @@ let EventService = class EventService {
         const newEvent = new this.model(eventDTO);
         return await newEvent.save();
     }
+    async findAll() {
+        return await this.model.find();
+    }
+    async findOne(id) {
+        return await this.model.findById(id);
+    }
+    async update(id, eventDTO) {
+        return await this.model.findByIdAndUpdate(id, eventDTO, { new: true });
+    }
+    async delete(id) {
+        this.model.findByIdAndDelete(id);
+        return {
+            status: common_1.HttpStatus.OK,
+            msg: 'Event Deleted',
+        };
+    }
 };
 exports.EventService = EventService;
 exports.EventService = EventService = __decorate([

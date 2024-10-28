@@ -6,6 +6,7 @@ import { ConfigModule } from '@nestjs/config';
 import { Mongoose } from 'mongoose';
 import { MongooseModule } from '@nestjs/mongoose';
 import { EventModule } from './event/event.module';
+import { NotificationModule } from './notification/notification.module';
 
 @Module({
   imports: [
@@ -15,7 +16,8 @@ import { EventModule } from './event/event.module';
     isGlobal: true,
   }),
     MongooseModule.forRoot(process.env.URI_MONGODB),
-    EventModule
+    EventModule,
+    NotificationModule
   ],
   controllers: [AppController],
   providers: [AppService],
