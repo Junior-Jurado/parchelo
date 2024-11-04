@@ -11,20 +11,21 @@ const common_1 = require("@nestjs/common");
 const user_controller_1 = require("./user.controller");
 const user_service_1 = require("./user.service");
 const mongoose_1 = require("@nestjs/mongoose");
-const user_scheme_1 = require("./scheme/user.scheme");
+const user_schema_1 = require("./schema/user.schema");
 const models_1 = require("../common/models/models");
+const category_module_1 = require("../category/category.module");
 let UserModule = class UserModule {
 };
 exports.UserModule = UserModule;
 exports.UserModule = UserModule = __decorate([
     (0, common_1.Module)({
         imports: [
-            mongoose_1.MongooseModule.forFeatureAsync([{
+            mongoose_1.MongooseModule.forFeatureAsync([
+                {
                     name: models_1.USER.name,
-                    useFactory: () => {
-                        return user_scheme_1.UserScheme;
-                    },
-                },]),
+                    useFactory: () => user_schema_1.UserSchema.plugin(require('mongoose-autopopulate')),
+                },
+            ]), category_module_1.CategoryModule,
         ],
         controllers: [user_controller_1.UserController],
         providers: [user_service_1.UserService],

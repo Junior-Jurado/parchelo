@@ -14,6 +14,9 @@ const user_module_1 = require("./user/user.module");
 const config_1 = require("@nestjs/config");
 const mongoose_1 = require("@nestjs/mongoose");
 const event_module_1 = require("./event/event.module");
+const notification_module_1 = require("./notification/notification.module");
+const interest_module_1 = require("./interest/interest.module");
+const category_module_1 = require("./category/category.module");
 let AppModule = class AppModule {
 };
 exports.AppModule = AppModule;
@@ -26,7 +29,10 @@ exports.AppModule = AppModule = __decorate([
                 isGlobal: true,
             }),
             mongoose_1.MongooseModule.forRoot(process.env.URI_MONGODB),
-            event_module_1.EventModule
+            event_module_1.EventModule,
+            notification_module_1.NotificationModule,
+            interest_module_1.InterestModule,
+            category_module_1.CategoryModule
         ],
         controllers: [app_controller_1.AppController],
         providers: [app_service_1.AppService],

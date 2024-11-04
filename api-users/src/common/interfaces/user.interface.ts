@@ -1,3 +1,5 @@
+import { ICategory } from "./category.interface";
+
 export interface IUser extends Document{
     id?: String;
     name: String;
@@ -12,14 +14,4 @@ export interface IUser extends Document{
     created_at: Date;
     updated_at: Date;
     category: ICategory[];
-}
-
-export interface IInterest{
-    id?: String;
-    name: String;
-}
-export interface ICategory{
-    id?: String;
-    name: String;
-    interests: IInterest[];
 }
