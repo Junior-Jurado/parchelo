@@ -15,6 +15,7 @@ import { InterestSchema } from './schema/interest.schema';
     ])
   ],
   controllers: [InterestController],
-  providers: [InterestService]
+  providers: [InterestService],
+  exports: [InterestService],
 })
 export class InterestModule {}

@@ -25,6 +25,29 @@ let CategoryService = class CategoryService {
         const newCategory = new this.model(categoryDTO);
         return await newCategory.save();
     }
+    async getAll() {
+        return await this.model.find().populate('interests');
+    }
+    async findOne(id) {
+        return await this.model.findById(id).populate('interests');
+    }
+    async update(id, categoryDTO) {
+        return await this.model.findByIdAndUpdate(id, categoryDTO, { new: true });
+    }
+    async delete(id) {
+        await this.model.findByIdAndDelete(id);
+        return {
+            status: common_1.HttpStatus.OK,
+            message: 'Category deleted'
+        };
+    }
+    async addInterest(categoryId, interestId) {
+        return await this.model.findByIdAndUpdate(categoryId, {
+            $addToSet: { interests: interestId },
+        }, {
+            new: true
+        }).populate('interests');
+    }
 };
 exports.CategoryService = CategoryService;
 exports.CategoryService = CategoryService = __decorate([

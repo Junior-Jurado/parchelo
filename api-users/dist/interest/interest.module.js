@@ -27,7 +27,8 @@ exports.InterestModule = InterestModule = __decorate([
             ])
         ],
         controllers: [interest_controller_1.InterestController],
-        providers: [interest_service_1.InterestService]
+        providers: [interest_service_1.InterestService],
+        exports: [interest_service_1.InterestService],
     })
 ], InterestModule);
 //# sourceMappingURL=interest.module.js.map
