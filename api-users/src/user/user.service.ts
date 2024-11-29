@@ -9,11 +9,10 @@ import { Model } from 'mongoose';
 
 @Injectable()
 export class UserService{
+    
     constructor(@InjectModel(USER.name) private readonly model: Model<IUser>){
 
     }
-
-    users: IUser[] = [];
 
     async hashPassword(password: String):Promise<String>{
         const salt = await bcrypt.genSalt(10);
@@ -31,20 +30,24 @@ export class UserService{
         return await this.model.find();
     }
 
-    async findUserByEmail(email: String): Promise<IUser>{
-        return this.model.findOne({email: email});
+    async findUserByEmail(email: String){
+        return await this.model.findOne({email});
     }
 
     async updateUser(email: String, user: UserDTO): Promise<IUser> {
         const hash = await this.hashPassword(user.password);
         const userUpdated = {...user, password: hash};
-        return await this.model.findOneAndUpdate({email: email}, user, {new: true})
+        return await this.model.findOneAndUpdate({email: email}, userUpdated, {new: true})
 
     }
 
     async deleteUser(email: String) {
         await this.model.findOneAndDelete(email);
-        return {status: HttpStatus.OK, msg:'User Deleted'};
+        return {status: HttpStatus.NO_CONTENT};
+    }
+
+    async checkPassword(password: String, passwordDB: String): Promise<Boolean> {
+        return await bcrypt.compare(password, passwordDB);
     }
 
 }

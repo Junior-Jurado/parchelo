@@ -16,6 +16,7 @@ exports.UserController = void 0;
 const common_1 = require("@nestjs/common");
 const user_dto_1 = require("./dto/user.dto");
 const user_service_1 = require("./user.service");
+const swagger_1 = require("@nestjs/swagger");
 let UserController = class UserController {
     constructor(userService) {
         this.userService = userService;
@@ -39,6 +40,7 @@ let UserController = class UserController {
 exports.UserController = UserController;
 __decorate([
     (0, common_1.Post)(),
+    (0, swagger_1.ApiOperation)({ summary: 'Create an User' }),
     __param(0, (0, common_1.Body)()),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [user_dto_1.UserDTO]),
@@ -46,12 +48,14 @@ __decorate([
 ], UserController.prototype, "create", null);
 __decorate([
     (0, common_1.Get)(),
+    (0, swagger_1.ApiOperation)({ summary: 'Find All Users' }),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", []),
     __metadata("design:returntype", void 0)
 ], UserController.prototype, "findAll", null);
 __decorate([
     (0, common_1.Get)('findEmail:email'),
+    (0, swagger_1.ApiOperation)({ summary: 'Find an User by email' }),
     __param(0, (0, common_1.Param)('email')),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [String]),
@@ -59,6 +63,7 @@ __decorate([
 ], UserController.prototype, "findUserByEmail", null);
 __decorate([
     (0, common_1.Put)('update/:email'),
+    (0, swagger_1.ApiOperation)({ summary: 'Update an User by email' }),
     __param(0, (0, common_1.Param)('email')),
     __param(1, (0, common_1.Body)()),
     __metadata("design:type", Function),
@@ -67,12 +72,14 @@ __decorate([
 ], UserController.prototype, "updateUser", null);
 __decorate([
     (0, common_1.Delete)(':email'),
+    (0, swagger_1.ApiOperation)({ summary: 'Delete an User by email' }),
     __param(0, (0, common_1.Param)('email')),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [String]),
     __metadata("design:returntype", void 0)
 ], UserController.prototype, "deleteUser", null);
 exports.UserController = UserController = __decorate([
+    (0, swagger_1.ApiTags)('Users'),
     (0, common_1.Controller)('/api/v1/user'),
     __metadata("design:paramtypes", [user_service_1.UserService])
 ], UserController);

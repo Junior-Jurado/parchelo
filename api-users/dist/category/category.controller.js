@@ -17,6 +17,7 @@ const common_1 = require("@nestjs/common");
 const category_service_1 = require("./category.service");
 const category_dto_1 = require("./dto/category.dto");
 const interest_service_1 = require("../interest/interest.service");
+const swagger_1 = require("@nestjs/swagger");
 let CategoryController = class CategoryController {
     constructor(categoryService, interestService) {
         this.categoryService = categoryService;
@@ -91,6 +92,7 @@ __decorate([
     __metadata("design:returntype", Promise)
 ], CategoryController.prototype, "addInterest", null);
 exports.CategoryController = CategoryController = __decorate([
+    (0, swagger_1.ApiTags)('Categories'),
     (0, common_1.Controller)('api/v1/category'),
     __metadata("design:paramtypes", [category_service_1.CategoryService,
         interest_service_1.InterestService])

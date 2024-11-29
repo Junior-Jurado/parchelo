@@ -1,7 +1,9 @@
 import { Body, Controller, Delete, Get, Param, Patch, Post } from '@nestjs/common';
 import { InterestService } from './interest.service';
 import { InterestDTO } from './dto/interest.dto';
+import { ApiTags } from '@nestjs/swagger';
 
+@ApiTags('Interests')
 @Controller('api/v1/interest')
 export class InterestController {
     constructor(private readonly interestService: InterestService) {}

@@ -1,5 +1,5 @@
-import { Interest } from "src/user/dto/user.dto";
+import { InterestDTO } from "src/interest/dto/interest.dto";
 export declare class CategoryDTO {
     readonly name: string;
-    readonly interests: Interest[];
+    readonly interests: InterestDTO[];
 }

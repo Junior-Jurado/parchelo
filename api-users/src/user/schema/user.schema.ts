@@ -10,9 +10,8 @@ export const UserSchema = new mongoose.Schema({
     max_picuture_profile: {type: String, required: true},
     description: {type: String, required: true},
     birthdate: {type: Date, required: true},
-    categories: [{ type: mongoose.Schema.Types.ObjectId, ref: 'categories'}],
-    created_at: {type: Date, required: true},
-    updated_at: {type: Date, required: true}    
+    categories: [{ type: mongoose.Schema.Types.ObjectId, ref: 'categories'}]
+
 },
 {
     timestamps: true

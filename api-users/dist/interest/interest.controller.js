@@ -16,6 +16,7 @@ exports.InterestController = void 0;
 const common_1 = require("@nestjs/common");
 const interest_service_1 = require("./interest.service");
 const interest_dto_1 = require("./dto/interest.dto");
+const swagger_1 = require("@nestjs/swagger");
 let InterestController = class InterestController {
     constructor(interestService) {
         this.interestService = interestService;
@@ -73,6 +74,7 @@ __decorate([
     __metadata("design:returntype", void 0)
 ], InterestController.prototype, "delete", null);
 exports.InterestController = InterestController = __decorate([
+    (0, swagger_1.ApiTags)('Interests'),
     (0, common_1.Controller)('api/v1/interest'),
     __metadata("design:paramtypes", [interest_service_1.InterestService])
 ], InterestController);

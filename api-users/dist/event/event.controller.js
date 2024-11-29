@@ -16,6 +16,7 @@ exports.EventController = void 0;
 const common_1 = require("@nestjs/common");
 const event_dto_1 = require("./dto/event.dto");
 const event_service_1 = require("./event.service");
+const swagger_1 = require("@nestjs/swagger");
 let EventController = class EventController {
     constructor(eventService) {
         this.eventService = eventService;
@@ -73,6 +74,7 @@ __decorate([
     __metadata("design:returntype", void 0)
 ], EventController.prototype, "delete", null);
 exports.EventController = EventController = __decorate([
+    (0, swagger_1.ApiTags)('Events'),
     (0, common_1.Controller)('api/v1/event'),
     __metadata("design:paramtypes", [event_service_1.EventService])
 ], EventController);

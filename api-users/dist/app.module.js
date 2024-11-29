@@ -17,6 +17,7 @@ const event_module_1 = require("./event/event.module");
 const notification_module_1 = require("./notification/notification.module");
 const interest_module_1 = require("./interest/interest.module");
 const category_module_1 = require("./category/category.module");
+const auth_module_1 = require("./auth/auth.module");
 let AppModule = class AppModule {
 };
 exports.AppModule = AppModule;
@@ -32,7 +33,8 @@ exports.AppModule = AppModule = __decorate([
             event_module_1.EventModule,
             notification_module_1.NotificationModule,
             interest_module_1.InterestModule,
-            category_module_1.CategoryModule
+            category_module_1.CategoryModule,
+            auth_module_1.AuthModule
         ],
         controllers: [app_controller_1.AppController],
         providers: [app_service_1.AppService],

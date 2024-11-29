@@ -8,6 +8,7 @@ import { EventModule } from './event/event.module';
 import { NotificationModule } from './notification/notification.module';
 import { InterestModule } from './interest/interest.module';
 import { CategoryModule } from './category/category.module';
+import { AuthModule } from './auth/auth.module';
 
 @Module({
   imports: [
@@ -20,7 +21,8 @@ import { CategoryModule } from './category/category.module';
     EventModule,
     NotificationModule,
     InterestModule,
-    CategoryModule
+    CategoryModule,
+    AuthModule
   ],
   controllers: [AppController],
   providers: [AppService],

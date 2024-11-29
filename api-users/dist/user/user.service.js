@@ -21,7 +21,6 @@ const mongoose_2 = require("mongoose");
 let UserService = class UserService {
     constructor(model) {
         this.model = model;
-        this.users = [];
     }
     async hashPassword(password) {
         const salt = await bcrypt.genSalt(10);
@@ -36,16 +35,19 @@ let UserService = class UserService {
         return await this.model.find();
     }
     async findUserByEmail(email) {
-        return this.model.findOne({ email: email });
+        return await this.model.findOne({ email });
     }
     async updateUser(email, user) {
         const hash = await this.hashPassword(user.password);
         const userUpdated = { ...user, password: hash };
-        return await this.model.findOneAndUpdate({ email: email }, user, { new: true });
+        return await this.model.findOneAndUpdate({ email: email }, userUpdated, { new: true });
     }
     async deleteUser(email) {
         await this.model.findOneAndDelete(email);
-        return { status: common_1.HttpStatus.OK, msg: 'User Deleted' };
+        return { status: common_1.HttpStatus.NO_CONTENT };
+    }
+    async checkPassword(password, passwordDB) {
+        return await bcrypt.compare(password, passwordDB);
     }
 };
 exports.UserService = UserService;

@@ -6,7 +6,6 @@ export declare const UserSchema: mongoose.Schema<any, mongoose.Model<any, any, a
     updatedAt: NativeDate;
 } & {
     name: string;
-    categories: mongoose.Types.ObjectId[];
     last_name: string;
     email: string;
     password: string;
@@ -15,14 +14,12 @@ export declare const UserSchema: mongoose.Schema<any, mongoose.Model<any, any, a
     max_picuture_profile: string;
     description: string;
     birthdate: NativeDate;
-    created_at: NativeDate;
-    updated_at: NativeDate;
+    categories: mongoose.Types.ObjectId[];
 }, mongoose.Document<unknown, {}, mongoose.FlatRecord<{
     createdAt: NativeDate;
     updatedAt: NativeDate;
 } & {
     name: string;
-    categories: mongoose.Types.ObjectId[];
     last_name: string;
     email: string;
     password: string;
@@ -31,14 +28,12 @@ export declare const UserSchema: mongoose.Schema<any, mongoose.Model<any, any, a
     max_picuture_profile: string;
     description: string;
     birthdate: NativeDate;
-    created_at: NativeDate;
-    updated_at: NativeDate;
+    categories: mongoose.Types.ObjectId[];
 }>> & mongoose.FlatRecord<{
     createdAt: NativeDate;
     updatedAt: NativeDate;
 } & {
     name: string;
-    categories: mongoose.Types.ObjectId[];
     last_name: string;
     email: string;
     password: string;
@@ -47,8 +42,7 @@ export declare const UserSchema: mongoose.Schema<any, mongoose.Model<any, any, a
     max_picuture_profile: string;
     description: string;
     birthdate: NativeDate;
-    created_at: NativeDate;
-    updated_at: NativeDate;
+    categories: mongoose.Types.ObjectId[];
 }> & {
     _id: mongoose.Types.ObjectId;
 } & {
