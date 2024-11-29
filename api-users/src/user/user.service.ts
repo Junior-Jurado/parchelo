@@ -9,9 +9,8 @@ import { Model } from 'mongoose';
 
 @Injectable()
 export class UserService{
-    constructor(@InjectModel(USER.name) private readonly model: Model<IUser>){
-
-    }
+    
+    constructor(@InjectModel(USER.name) private readonly model: Model<IUser>){}
 
     users: IUser[] = [];
 
@@ -25,7 +24,6 @@ export class UserService{
         const newUser = new this.model({...userDTO, password: hash});
         return await newUser.save();
     }
-
 
     async findAll(): Promise<IUser[]>{
         return await this.model.find();
