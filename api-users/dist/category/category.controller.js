@@ -18,6 +18,7 @@ const category_service_1 = require("./category.service");
 const category_dto_1 = require("./dto/category.dto");
 const interest_service_1 = require("../interest/interest.service");
 const swagger_1 = require("@nestjs/swagger");
+const jwt_aut_guard_1 = require("../auth/guards/jwt-aut.guard");
 let CategoryController = class CategoryController {
     constructor(categoryService, interestService) {
         this.categoryService = categoryService;
@@ -93,6 +94,8 @@ __decorate([
 ], CategoryController.prototype, "addInterest", null);
 exports.CategoryController = CategoryController = __decorate([
     (0, swagger_1.ApiTags)('Categories'),
+    (0, swagger_1.ApiBearerAuth)(),
+    (0, common_1.UseGuards)(jwt_aut_guard_1.JwtAuthGuard),
     (0, common_1.Controller)('api/v1/category'),
     __metadata("design:paramtypes", [category_service_1.CategoryService,
         interest_service_1.InterestService])

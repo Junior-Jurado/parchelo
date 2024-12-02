@@ -9,11 +9,14 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.NotificationController = void 0;
 const common_1 = require("@nestjs/common");
 const swagger_1 = require("@nestjs/swagger");
+const jwt_aut_guard_1 = require("../auth/guards/jwt-aut.guard");
 let NotificationController = class NotificationController {
 };
 exports.NotificationController = NotificationController;
 exports.NotificationController = NotificationController = __decorate([
     (0, swagger_1.ApiTags)('Nofications'),
+    (0, swagger_1.ApiBearerAuth)(),
+    (0, common_1.UseGuards)(jwt_aut_guard_1.JwtAuthGuard),
     (0, common_1.Controller)('notification')
 ], NotificationController);
 //# sourceMappingURL=notification.controller.js.map

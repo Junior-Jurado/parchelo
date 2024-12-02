@@ -7,7 +7,7 @@ export declare class AuthService {
     constructor(userService: UserService, jwtService: JwtService);
     validateUser(email: String, password: String): Promise<any>;
     signIng(user: any): Promise<{
-        acces_token: string;
+        access_token: string;
     }>;
     signUp(userDTO: UserDTO): Promise<import("../common/interfaces/user.interface").IUser>;
 }

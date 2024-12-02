@@ -30,7 +30,9 @@ let AuthService = class AuthService {
             email: user.email,
             sub: user._id,
         };
-        return { acces_token: this.jwtService.sign(payload) };
+        console.log('Validating user', user.email);
+        console.log('Payload:', payload);
+        return { access_token: this.jwtService.sign(payload) };
     }
     async signUp(userDTO) {
         return this.userService.create(userDTO);

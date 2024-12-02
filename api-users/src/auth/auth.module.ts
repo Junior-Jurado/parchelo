@@ -9,10 +9,10 @@ import { JwtStrategy } from './strategies/jwt.strategy';
 
 @Module({
   imports: [UserModule, PassportModule, JwtModule.register({
-    secret: process.env.JWT_SECRET,
+    secret: process.env.JWT_SECRET || "JWTCl4v3S3cr3t4@Api",
     signOptions: {
       //expiresIn: process.env.EXPIRES_IN,
-      audience: process.env.APP_URL,
+      audience: process.env.APP_URL || "https://parchelo.com",
     }
   })],
   controllers: [AuthController],

@@ -21,9 +21,9 @@ exports.AuthModule = AuthModule;
 exports.AuthModule = AuthModule = __decorate([
     (0, common_1.Module)({
         imports: [user_module_1.UserModule, passport_1.PassportModule, jwt_1.JwtModule.register({
-                secret: process.env.JWT_SECRET,
+                secret: process.env.JWT_SECRET || "JWTCl4v3S3cr3t4@Api",
                 signOptions: {
-                    audience: process.env.APP_URL,
+                    audience: process.env.APP_URL || "https://parchelo.com",
                 }
             })],
         controllers: [auth_controller_1.AuthController],

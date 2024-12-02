@@ -12,8 +12,18 @@ export class AuthController {
     @UseGuards(LocalAuthGuard)
     @Post('signin')
     async signin(@Req() req) {
-        return await this.authService.signIng(req.user);
+        try {
+            console.log('Incoming request:', req.user); // Verifica si llega el usuario
+            console.log('JWT_SECRET:', process.env.JWT_SECRET);
+            const token = await this.authService.signIng(req.user);
+            console.log('Generated token:', token);
+            return token;
+        } catch (error) {
+            console.error('Signin Error:', error); // Muestra el error en detalle
+            throw error; // Deja que Nest maneje el error
+        }
     }
+
 
     @Post('signup')
     async signUp(@Body() userDTO:UserDTO) {

@@ -17,6 +17,7 @@ const common_1 = require("@nestjs/common");
 const event_dto_1 = require("./dto/event.dto");
 const event_service_1 = require("./event.service");
 const swagger_1 = require("@nestjs/swagger");
+const jwt_aut_guard_1 = require("../auth/guards/jwt-aut.guard");
 let EventController = class EventController {
     constructor(eventService) {
         this.eventService = eventService;
@@ -75,6 +76,8 @@ __decorate([
 ], EventController.prototype, "delete", null);
 exports.EventController = EventController = __decorate([
     (0, swagger_1.ApiTags)('Events'),
+    (0, swagger_1.ApiBearerAuth)(),
+    (0, common_1.UseGuards)(jwt_aut_guard_1.JwtAuthGuard),
     (0, common_1.Controller)('api/v1/event'),
     __metadata("design:paramtypes", [event_service_1.EventService])
 ], EventController);

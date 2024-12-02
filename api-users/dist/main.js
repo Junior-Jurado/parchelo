@@ -15,6 +15,7 @@ async function bootstrap() {
         .setTitle('PARCHELO')
         .setDescription('Arma los mejores parches')
         .setVersion('1.0.0')
+        .addBearerAuth()
         .build();
     const document = swagger_1.SwaggerModule.createDocument(app, options);
     swagger_1.SwaggerModule.setup('/api/docs', app, document, {

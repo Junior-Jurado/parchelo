@@ -25,8 +25,11 @@ export class AuthService {
             email: user.email,
             sub: user._id,
         };
+        console.log('Validating user', user.email);
+        console.log('Payload:', payload);
 
-        return { acces_token: this.jwtService.sign(payload) };
+
+        return { access_token: this.jwtService.sign(payload) };
     }
 
     async signUp(userDTO: UserDTO) {

@@ -17,6 +17,7 @@ const common_1 = require("@nestjs/common");
 const user_dto_1 = require("./dto/user.dto");
 const user_service_1 = require("./user.service");
 const swagger_1 = require("@nestjs/swagger");
+const jwt_aut_guard_1 = require("../auth/guards/jwt-aut.guard");
 let UserController = class UserController {
     constructor(userService) {
         this.userService = userService;
@@ -80,6 +81,8 @@ __decorate([
 ], UserController.prototype, "deleteUser", null);
 exports.UserController = UserController = __decorate([
     (0, swagger_1.ApiTags)('Users'),
+    (0, swagger_1.ApiBearerAuth)(),
+    (0, common_1.UseGuards)(jwt_aut_guard_1.JwtAuthGuard),
     (0, common_1.Controller)('/api/v1/user'),
     __metadata("design:paramtypes", [user_service_1.UserService])
 ], UserController);
