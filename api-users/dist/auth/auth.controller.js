@@ -23,17 +23,8 @@ let AuthController = class AuthController {
         this.authService = authService;
     }
     async signin(req) {
-        try {
-            console.log('Incoming request:', req.user);
-            console.log('JWT_SECRET:', process.env.JWT_SECRET);
-            const token = await this.authService.signIng(req.user);
-            console.log('Generated token:', token);
-            return token;
-        }
-        catch (error) {
-            console.error('Signin Error:', error);
-            throw error;
-        }
+        const token = await this.authService.signIng(req.user);
+        return token;
     }
     async signUp(userDTO) {
         return await this.authService.signUp(userDTO);
