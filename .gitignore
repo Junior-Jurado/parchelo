@@ -1,5 +1,88 @@
 api-users\node_modules
 api-gateway\node_modules
+microservice-users\node_modules
+microservice-categories\node_modules
+microservice-events\node_modules
+microservice-interests\node_modules
+microservice-locations\node_modules
+microservice-notifications\node_modules
 
 api-gateway\.env.development
+microservice-users\.env.development
+microservice-categories\.env.development
+microservice-events\.env.development
+microservice-interests\.env.development
+microservice-locations\.env.development
+microservice-notifications\.env.development
 api-users\.env.development
+
+api-gateway\dist
+microservice-users\dist
+microservice-interests\dist
+microservice-locations\dist
+microservice-notifications\dist
+microservice-categories\dist
+microservice-events\dist
+
+db.json
+
+api-gateway\dist
+
+
+# RECOMENDADO PONER AQUI
+# compiled output
+/dist
+/node_modules
+/build
+
+# Logs
+logs
+*.log
+npm-debug.log*
+pnpm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+lerna-debug.log*
+
+# OS
+.DS_Store
+
+# Tests
+/coverage
+/.nyc_output
+
+# IDEs and editors
+/.idea
+.project
+.classpath
+.c9/
+*.launch
+.settings/
+*.sublime-workspace
+
+# IDE - VSCode
+.vscode/*
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
+
+# dotenv environment variable files
+.env
+.env.development.local
+.env.test.local
+.env.production.local
+.env.local
+
+# temp directory
+.temp
+.tmp
+
+# Runtime data
+pids
+*.pid
+*.seed
+*.pid.lock
+
+# Diagnostic reports (https://nodejs.org/api/report.html)
+report.[0-9]*.[0-9]*.[0-9]*.[0-9]*.json

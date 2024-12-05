@@ -2,6 +2,9 @@ export enum RabbitMQ {
     UserQueue = 'users',
     CategoryQueue = 'categories',
     InterestQueue = 'interests',
+    EventQueue = 'events',
+    LocationQueue = 'locations',
+    NotificationQueue = 'notifications',
 }
 
 export enum UserMSG {
@@ -27,4 +30,30 @@ export enum CategoryMSG {
     FIND_ONE = 'FIND_CATEGORY',
     UPDATE = 'UPDATE_CATEGORY',
     DELETE = 'DELETE_CATEGORY',
+}
+
+export enum EventMSG {
+    CREATE = 'CREATE_EVENT',
+    FIND_ALL = 'FIND_EVENTS',
+    FIND_ONE = 'FIND_EVENT',
+    UPDATE = 'UPDATE_EVENT',
+    DELETE = 'DELETE_EVENT',
+    ADD_ATTENDEE = 'ADD_ATTENDEE',
+    DELETE_ATTENDEE = 'DELETE_ATTENDEE',
+}
+
+export enum LocationMSG {
+    CREATE = 'CREATE_LOCATION',
+    FIND_ALL = 'FIND_LOCATIONS',
+    FIND_ONE = 'FIND_LOCATION',
+    UPDATE = 'UPDATE_LOCATION',
+    DELETE = 'DELETE_LOCATION',
+}
+
+export enum NotificationMSG {
+    CREATE = 'CREATE_NOTIFICATION',
+    FIND_ALL = 'FIND_NOTIFICATIONS',
+    FIND_ONE = 'FIND_NOTIFICATION',
+    UPDATE = 'UPDATE_NOTIFICATION',
+    DELETE = 'DELETE_NOTIFICATION',
 }

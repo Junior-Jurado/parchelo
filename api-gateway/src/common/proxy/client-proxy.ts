@@ -37,4 +37,33 @@ export class ClientProxyParchelo{
             },
         });
     }
+
+    clientProxyLocations(): ClientProxy {
+        return ClientProxyFactory.create({
+            transport: Transport.RMQ,
+            options: {
+                urls: this.config.get('AMQP_URL'),
+                queue: RabbitMQ.LocationQueue,
+            },
+        });
+    }
+
+    clientProxyEvents(): ClientProxy {
+        return ClientProxyFactory.create({
+            transport: Transport.RMQ,
+            options: {
+                urls: this.config.get('AMQP_URL'),
+                queue: RabbitMQ.EventQueue,
+            },
+        });
+    }
+    clientProxyNotifications(): ClientProxy {
+        return ClientProxyFactory.create({
+            transport: Transport.RMQ,
+            options: {
+                urls: this.config.get('AMQP_URL'),
+                queue: RabbitMQ.NotificationQueue,
+            },
+        });
+    }
 }

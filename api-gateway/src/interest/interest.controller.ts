@@ -1,10 +1,14 @@
-import { Body, Controller, Delete, Get, Param, Patch, Post } from '@nestjs/common';
+import { Body, Controller, Delete, Get, Param, Patch, Post, UseGuards } from '@nestjs/common';
 import { Observable } from 'rxjs';
 import { IInterest } from 'src/common/interfaces/interest.interface';
 import { ClientProxyParchelo } from 'src/common/proxy/client-proxy';
 import { InterestDTO } from './dto/interest.dto';
 import { InterestMSG } from 'src/common/constanst';
+import { ApiTags } from '@nestjs/swagger';
+import { JwtAuthGuard } from 'src/auth/guards/jwt-aut.guard';
 
+@ApiTags('Interest')
+@UseGuards(JwtAuthGuard)
 @Controller('api/v2/interest')
 export class InterestController {
     constructor(private readonly clientProxy: ClientProxyParchelo) {}
