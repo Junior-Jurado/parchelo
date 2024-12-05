@@ -1,32 +1,32 @@
-api-users\node_modules
-api-gateway\node_modules
-microservice-users\node_modules
-microservice-categories\node_modules
-microservice-events\node_modules
-microservice-interests\node_modules
-microservice-locations\node_modules
-microservice-notifications\node_modules
+.api-users\node_modules
+.api-gateway\node_modules
+.microservice-users\node_modules
+.microservice-categories\node_modules
+.microservice-events\node_modules
+.microservice-interests\node_modules
+.microservice-locations\node_modules
+.microservice-notifications\node_modules
 
-api-gateway\.env.development
-microservice-users\.env.development
-microservice-categories\.env.development
-microservice-events\.env.development
-microservice-interests\.env.development
-microservice-locations\.env.development
-microservice-notifications\.env.development
-api-users\.env.development
+.api-gateway\.env.development
+.microservice-users\.env.development
+.microservice-categories\.env.development
+.microservice-events\.env.development
+.microservice-interests\.env.development
+.microservice-locations\.env.development
+.microservice-notifications\.env.development
+.api-users\.env.development
 
-api-gateway\dist
-microservice-users\dist
-microservice-interests\dist
-microservice-locations\dist
-microservice-notifications\dist
-microservice-categories\dist
-microservice-events\dist
+.api-gateway\dist
+.microservice-users\dist
+.microservice-interests\dist
+.microservice-locations\dist
+.microservice-notifications\dist
+.microservice-categories\dist
+.microservice-events\dist
 
-db.json
+.db.json
 
-api-gateway\dist
+.api-gateway\dist
 
 
 # RECOMENDADO PONER AQUI
