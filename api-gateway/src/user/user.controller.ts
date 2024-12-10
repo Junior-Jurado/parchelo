@@ -15,10 +15,10 @@ export class UserController {
 
     private _clientProxyUser = this.clientProxy.clientProxyUsers();
 
-    @Post()
-    create(@Body() userDTO:UserDTO): Observable<IUser> {
-        return this._clientProxyUser.send(UserMSG.CREATE, userDTO);
-    }
+    // @Post()
+    // create(@Body() userDTO:UserDTO): Observable<IUser> {
+    //     return this._clientProxyUser.send(UserMSG.CREATE, userDTO);
+    // }
 
     @Get()
     findAll():Observable<IUser[]> {

@@ -9,6 +9,7 @@ var AllExceptionFilter_1;
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.AllExceptionFilter = void 0;
 const common_1 = require("@nestjs/common");
+const microservices_1 = require("@nestjs/microservices");
 let AllExceptionFilter = AllExceptionFilter_1 = class AllExceptionFilter {
     constructor() {
         this.logger = new common_1.Logger(AllExceptionFilter_1.name);
@@ -17,13 +18,36 @@ let AllExceptionFilter = AllExceptionFilter_1 = class AllExceptionFilter {
         const ctx = host.switchToHttp();
         const res = ctx.getResponse();
         const req = ctx.getRequest();
-        const status = exception instanceof common_1.HttpException ? exception.getStatus() : common_1.HttpStatus.INTERNAL_SERVER_ERROR;
-        const msg = exception instanceof common_1.HttpException ? exception.getResponse() : exception;
-        this.logger.error(`Status ${status} Error: ${JSON.stringify(msg)}`);
+        let status = exception?.statusCode || common_1.HttpStatus.INTERNAL_SERVER_ERROR;
+        let message = exception?.message || 'Internal server error';
+        if (exception instanceof common_1.HttpException) {
+            status = exception.getStatus();
+            const response = exception.getResponse();
+            message = typeof response === 'object' ? JSON.stringify(response) : response;
+        }
+        if (host.getType() === 'rpc') {
+            if (exception instanceof microservices_1.RpcException) {
+                const error = exception.getError();
+                if (typeof error === 'object' && error !== null) {
+                    return {
+                        statusCode: error.statusCode || common_1.HttpStatus.INTERNAL_SERVER_ERROR,
+                        message: error.message || 'Internal server error'
+                    };
+                }
+                return {
+                    statusCode: common_1.HttpStatus.INTERNAL_SERVER_ERROR,
+                    message: error || 'Internal server error'
+                };
+            }
+            return {
+                statusCode: status,
+                message: exception?.message || 'Internal server error'
+            };
+        }
         res.status(status).json({
-            timestamp: new Date().toISOString,
+            timestamp: new Date().toISOString(),
             path: req.url,
-            error: msg,
+            error: message,
         });
     }
 };

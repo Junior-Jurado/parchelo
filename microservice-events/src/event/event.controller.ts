@@ -1,6 +1,8 @@
 import { Body, Controller, Delete, Get, Param, Patch, Post, UseGuards } from '@nestjs/common';
 import { EventDTO } from './dto/event.dto';
 import { EventService } from './event.service';
+import { MessagePattern } from '@nestjs/microservices';
+import { EventMSG } from './common/constanst';
 
 @Controller()
 export class EventController {
@@ -11,7 +13,7 @@ export class EventController {
         this.eventService.createEvent(eventDTO);
     }
 
-    @Get()
+    @MessagePattern(EventMSG.FIND_ALL)
     findAll() {
         return this.eventService.findAll();
     } 

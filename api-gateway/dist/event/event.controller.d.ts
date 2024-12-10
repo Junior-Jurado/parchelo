@@ -12,5 +12,5 @@ export declare class EventController {
     findOne(id: string): Observable<IEvent>;
     update(id: string, eventDTO: EventDTO): Observable<IEvent>;
     delete(id: string): Observable<any>;
-    addAttendee(eventID: string, userID: string): Promise<Observable<any>>;
+    addAttendee(eventID: string, userID: string): unknown;
 }

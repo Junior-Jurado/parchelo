@@ -11,6 +11,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 var __param = (this && this.__param) || function (paramIndex, decorator) {
     return function (target, key) { decorator(target, key, paramIndex); }
 };
+var _a, _b, _c, _d, _e, _f, _g, _h;
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.InterestController = void 0;
 const common_1 = require("@nestjs/common");
@@ -47,35 +48,35 @@ __decorate([
     __param(0, (0, common_1.Body)()),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [interest_dto_1.InterestDTO]),
-    __metadata("design:returntype", rxjs_1.Observable)
+    __metadata("design:returntype", typeof (_a = typeof rxjs_1.Observable !== "undefined" && rxjs_1.Observable) === "function" ? _a : Object)
 ], InterestController.prototype, "create", null);
 __decorate([
     (0, common_1.Get)(),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", []),
-    __metadata("design:returntype", rxjs_1.Observable)
+    __metadata("design:returntype", typeof (_b = typeof rxjs_1.Observable !== "undefined" && rxjs_1.Observable) === "function" ? _b : Object)
 ], InterestController.prototype, "findAll", null);
 __decorate([
     (0, common_1.Get)(':id'),
     __param(0, (0, common_1.Param)('id')),
     __metadata("design:type", Function),
-    __metadata("design:paramtypes", [String]),
-    __metadata("design:returntype", rxjs_1.Observable)
+    __metadata("design:paramtypes", [typeof (_c = typeof String !== "undefined" && String) === "function" ? _c : Object]),
+    __metadata("design:returntype", typeof (_d = typeof rxjs_1.Observable !== "undefined" && rxjs_1.Observable) === "function" ? _d : Object)
 ], InterestController.prototype, "findOne", null);
 __decorate([
     (0, common_1.Patch)(':id'),
     __param(0, (0, common_1.Param)('id')),
     __param(1, (0, common_1.Body)()),
     __metadata("design:type", Function),
-    __metadata("design:paramtypes", [String, interest_dto_1.InterestDTO]),
-    __metadata("design:returntype", rxjs_1.Observable)
+    __metadata("design:paramtypes", [typeof (_e = typeof String !== "undefined" && String) === "function" ? _e : Object, interest_dto_1.InterestDTO]),
+    __metadata("design:returntype", typeof (_f = typeof rxjs_1.Observable !== "undefined" && rxjs_1.Observable) === "function" ? _f : Object)
 ], InterestController.prototype, "update", null);
 __decorate([
     (0, common_1.Delete)(':id'),
     __param(0, (0, common_1.Param)('id')),
     __metadata("design:type", Function),
-    __metadata("design:paramtypes", [String]),
-    __metadata("design:returntype", rxjs_1.Observable)
+    __metadata("design:paramtypes", [typeof (_g = typeof String !== "undefined" && String) === "function" ? _g : Object]),
+    __metadata("design:returntype", typeof (_h = typeof rxjs_1.Observable !== "undefined" && rxjs_1.Observable) === "function" ? _h : Object)
 ], InterestController.prototype, "delete", null);
 exports.InterestController = InterestController = __decorate([
     (0, swagger_1.ApiTags)('Interest'),

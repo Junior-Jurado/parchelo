@@ -8,6 +8,7 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
+var _a, _b, _c;
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.EventDTO = exports.WhatsAppGroupDTO = void 0;
 const swagger_1 = require("@nestjs/swagger");
@@ -40,7 +41,7 @@ __decorate([
     (0, swagger_1.ApiProperty)(),
     (0, class_validator_1.IsNotEmpty)(),
     (0, class_validator_1.IsDate)(),
-    __metadata("design:type", Date)
+    __metadata("design:type", typeof (_a = typeof Date !== "undefined" && Date) === "function" ? _a : Object)
 ], EventDTO.prototype, "date", void 0);
 __decorate([
     (0, swagger_1.ApiProperty)(),
@@ -56,7 +57,7 @@ __decorate([
 __decorate([
     (0, swagger_1.ApiProperty)({ type: String }),
     (0, class_validator_1.IsNotEmpty)(),
-    __metadata("design:type", mongoose_1.Types.ObjectId)
+    __metadata("design:type", typeof (_b = typeof mongoose_1.Types !== "undefined" && mongoose_1.Types.ObjectId) === "function" ? _b : Object)
 ], EventDTO.prototype, "creator", void 0);
 __decorate([
     (0, swagger_1.ApiProperty)({ type: [String] }),
@@ -85,7 +86,7 @@ __decorate([
     (0, swagger_1.ApiProperty)(),
     (0, class_validator_1.IsNotEmpty)(),
     (0, class_validator_1.IsDate)(),
-    __metadata("design:type", Date)
+    __metadata("design:type", typeof (_c = typeof Date !== "undefined" && Date) === "function" ? _c : Object)
 ], EventDTO.prototype, "creation_date", void 0);
 __decorate([
     (0, swagger_1.ApiProperty)(),

@@ -7,8 +7,6 @@ export declare class AuthService {
     constructor(clientProxy: ClientProxyParchelo, jwtService: JwtService);
     private _clientProxyUser;
     validateUser(email: String, password: String): Promise<any>;
-    signIng(user: any): Promise<{
-        access_token: string;
-    }>;
-    signUp(userDTO: UserDTO): Promise<import("rxjs").Observable<any>>;
+    signIng(user: any): unknown;
+    signUp(userDTO: UserDTO): unknown;
 }

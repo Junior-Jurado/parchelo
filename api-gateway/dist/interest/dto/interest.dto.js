@@ -8,6 +8,7 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
+var _a;
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.InterestDTO = void 0;
 const swagger_1 = require("@nestjs/swagger");
@@ -19,6 +20,6 @@ __decorate([
     (0, swagger_1.ApiProperty)(),
     (0, class_validator_1.IsNotEmpty)(),
     (0, class_validator_1.IsString)(),
-    __metadata("design:type", String)
+    __metadata("design:type", typeof (_a = typeof String !== "undefined" && String) === "function" ? _a : Object)
 ], InterestDTO.prototype, "name", void 0);
 //# sourceMappingURL=interest.dto.js.map

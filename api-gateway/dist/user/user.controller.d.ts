@@ -6,7 +6,6 @@ export declare class UserController {
     private readonly clientProxy;
     constructor(clientProxy: ClientProxyParchelo);
     private _clientProxyUser;
-    create(userDTO: UserDTO): Observable<IUser>;
     findAll(): Observable<IUser[]>;
     findOne(id: String): Observable<IUser>;
     update(id: String, userDTO: UserDTO): Observable<IUser>;
