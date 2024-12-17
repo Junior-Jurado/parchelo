@@ -1,9 +1,13 @@
 import { UserDTO } from './dto/user.dto';
 import { UserService } from './user.service';
+
 export declare class UserController {
     private readonly userService;
+
     constructor(userService: UserService);
+
     img: Express.Multer.File;
+
     create(userDTO: UserDTO): Promise<import("../common/interfaces/user.interface").IUser>;
     findAll(): Promise<import("../common/interfaces/user.interface").IUser[]>;
     findUserByEmail(email: String): Promise<import("../common/interfaces/user.interface").IUser>;

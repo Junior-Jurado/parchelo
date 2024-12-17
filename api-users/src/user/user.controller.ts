@@ -41,11 +41,4 @@ export class UserController {
     uploadFile(@UploadedFile() file: Express.Multer.File){
         console.log(file);
     }
-/*
-    @Get(':id')
-    findUser(@Param('id') id: String ){
-        return this.userService.findUser(id);
-    }
-    //#TODO: Se modifica lo que queremos pero se borran los demas atributos
-    */
 }
