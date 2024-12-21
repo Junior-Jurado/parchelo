@@ -36,8 +36,13 @@ let UserController = class UserController {
     deleteUser(email) {
         return this.userService.deleteUser(email);
     }
-    uploadFile(file) {
-        console.log(file);
+    async uploadFile(userId, file) {
+        if (!file) {
+            throw new common_1.HttpException('No file uploaded', common_1.HttpStatus.BAD_REQUEST);
+        }
+        const imageBuffer = file.buffer;
+        const mimetype = file.mimetype;
+        return this.userService.saveProfilePicture(userId, imageBuffer, mimetype);
     }
 };
 exports.UserController = UserController;
@@ -77,12 +82,21 @@ __decorate([
     __metadata("design:returntype", void 0)
 ], UserController.prototype, "deleteUser", null);
 __decorate([
-    (0, common_1.Post)('upload'),
-    (0, common_1.UseInterceptors)((0, platform_express_1.FileInterceptor)('file')),
-    __param(0, (0, common_1.UploadedFile)()),
+    (0, common_1.Post)(':userId/upload'),
+    (0, common_1.UseInterceptors)((0, platform_express_1.FileInterceptor)('file', {
+        fileFilter: (req, file, callback) => {
+            console.log('File MIME type:', file.mimetype);
+            if (!file.mimetype.match(/image\/(jpg|jpeg|png)$/)) {
+                return callback(new common_1.HttpException('Unsupported file type', common_1.HttpStatus.BAD_REQUEST), false);
+            }
+            callback(null, true);
+        },
+    })),
+    __param(0, (0, common_1.Param)('userId')),
+    __param(1, (0, common_1.UploadedFile)()),
     __metadata("design:type", Function),
-    __metadata("design:paramtypes", [Object]),
-    __metadata("design:returntype", void 0)
+    __metadata("design:paramtypes", [String, Object]),
+    __metadata("design:returntype", Promise)
 ], UserController.prototype, "uploadFile", null);
 exports.UserController = UserController = __decorate([
     (0, common_1.Controller)('/api/v1/user'),

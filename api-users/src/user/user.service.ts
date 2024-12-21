@@ -1,4 +1,4 @@
-import { HttpStatus, Injectable } from '@nestjs/common';
+import { HttpException, HttpStatus, Injectable } from '@nestjs/common';
 import { UserDTO } from './dto/user.dto';
 import { IUser } from '../common/interfaces/user.interface';
 import * as bcrypt from 'bcrypt';
@@ -9,7 +9,6 @@ import { Model } from 'mongoose';
 
 @Injectable()
 export class UserService{
-    
     constructor(@InjectModel(USER.name) private readonly model: Model<IUser>){}
 
     users: IUser[] = [];
@@ -44,5 +43,17 @@ export class UserService{
         await this.model.findOneAndDelete(email);
         return {status: HttpStatus.OK, msg:'User Deleted'};
     }
+
+    async saveProfilePicture(userId: String,imageBuffer: Buffer, mimetype: string): Promise<IUser> {
+        const user = await this.model.findById(userId);
+        if(!user){
+            throw new HttpException('User not found', HttpStatus.NOT_FOUND);
+        }
+
+        const base64Image = `data:${mimetype};base64,${imageBuffer.toString('base64')}`;
+        user.main_picture_profile = base64Image;
+        return user.save();
+    }
+
 
 }

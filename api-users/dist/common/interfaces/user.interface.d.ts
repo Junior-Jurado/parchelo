@@ -7,7 +7,7 @@ export interface IUser extends Document {
     password: String;
     main_picture_profile: String;
     min_picture_profile: String;
-    max_picuture_profile: String;
+    max_picture_profile: String;
     description: String;
     birthdate: Date;
     created_at: Date;

@@ -15,4 +15,5 @@ export declare class UserService {
         status: HttpStatus;
         msg: string;
     }>;
+    saveProfilePicture(userId: String, imageBuffer: Buffer, mimetype: string): Promise<IUser>;
 }

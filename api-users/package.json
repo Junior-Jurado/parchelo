@@ -33,6 +33,7 @@
     "mongoose-autopopulate": "^1.1.0",
     "reflect-metadata": "^0.2.0",
     "rxjs": "^7.8.1",
+    "sharp": "^0.33.5",
     "uuid": "^10.0.0"
   },
   "devDependencies": {

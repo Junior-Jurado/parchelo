@@ -47,6 +47,15 @@ let UserService = class UserService {
         await this.model.findOneAndDelete(email);
         return { status: common_1.HttpStatus.OK, msg: 'User Deleted' };
     }
+    async saveProfilePicture(userId, imageBuffer, mimetype) {
+        const user = await this.model.findById(userId);
+        if (!user) {
+            throw new common_1.HttpException('User not found', common_1.HttpStatus.NOT_FOUND);
+        }
+        const base64Image = `data:${mimetype};base64,${imageBuffer.toString('base64')}`;
+        user.main_picture_profile = base64Image;
+        return user.save();
+    }
 };
 exports.UserService = UserService;
 exports.UserService = UserService = __decorate([
