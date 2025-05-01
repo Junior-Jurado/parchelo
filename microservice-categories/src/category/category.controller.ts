@@ -20,8 +20,13 @@ export class CategoryController {
     }
 
     @MessagePattern(CategoryMSG.FIND_ONE)
-    getById(@Payload() id: String){
-        return this.categoryService.findOne(id);
+    getById(@Payload() payload){
+        return this.categoryService.findOne(payload.id);
+    }
+
+    @MessagePattern(CategoryMSG.FIND_BY_NAME)
+    getByName(@Payload() payload) {
+        return this.categoryService.findByName(payload);
     }
 
     @MessagePattern(CategoryMSG.UPDATE)
@@ -38,5 +43,7 @@ export class CategoryController {
     addInterest(@Payload() payload) {
         return this.categoryService.addInterest(payload.categoryId, payload.interestId);
     }
+
+
 
 }

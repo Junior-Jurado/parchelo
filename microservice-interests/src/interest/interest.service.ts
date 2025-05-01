@@ -14,9 +14,16 @@ export class InterestService {
         private readonly model: Model<IInterest>) {}
 
     async create(interestDTO: InterestDTO): Promise<IInterest> {
+        const existing = await this.model.findOne({ name: interestDTO.name });
+    
+        if (existing) {
+            return existing;
+        }
+
         const newInterest = new this.model(interestDTO);
         return await newInterest.save();
     }
+        
 
     async findAll(): Promise<IInterest[]> {
         return await this.model.find();

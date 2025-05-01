@@ -3,6 +3,7 @@ import { UserDTO } from './dto/user.dto';
 import { UserService } from './user.service';
 import { MessagePattern, Payload } from '@nestjs/microservices';
 import { UserMSG } from 'src/common/constanst';
+import { measureMemory } from 'vm';
 
 
 @Controller()
@@ -22,7 +23,12 @@ export class UserController {
     @MessagePattern(UserMSG.FIND_ONE)
     findOne(@Payload() id: String){
         return this.userService.findOne(id);
-    }   
+    }
+    
+    @MessagePattern(UserMSG.FIND_BY_EMAIL)
+    findByEmail(@Payload() email: string) {
+        return this.userService.findUserByEmail(email);
+    }
 
     @MessagePattern(UserMSG.UPDATE)
     update(@Payload() payload: any){
@@ -44,6 +50,11 @@ export class UserController {
         if(user && isValidPassword) return user;
 
         return null;
+    }
+
+    @MessagePattern(UserMSG.ADD_CATEGORY_INTEREST)
+    async addInterests(@Payload() payload) {
+        return this.userService.addInterests(payload.userId, payload.interests);
     }
 
 /*

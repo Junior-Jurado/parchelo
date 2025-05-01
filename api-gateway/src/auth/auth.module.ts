@@ -7,14 +7,23 @@ import { JwtModule } from '@nestjs/jwt';
 import { LocalStrategy } from './strategies/local.strategy';
 import { JwtStrategy } from './strategies/jwt.strategy';
 import { ProxyModule } from 'src/common/proxy/proxy.module';
+import { ConfigModule, ConfigService } from '@nestjs/config';
 
 @Module({
-  imports: [UserModule, ProxyModule, PassportModule, JwtModule.register({
-    secret: process.env.JWT_SECRET || "JWTCl4v3S3cr3t4@Api",
-    signOptions: {
-      //expiresIn: process.env.EXPIRES_IN,
-      audience: process.env.APP_URL || "https://parchelo.com",
-    }
+  imports: [
+    UserModule, 
+    ProxyModule, 
+    PassportModule, 
+    JwtModule.registerAsync({
+      imports: [ConfigModule],
+      inject: [ConfigService],
+      useFactory: (config: ConfigService) => ({
+        secret: config.get('JWT_SECRET'),
+        signOptions: {
+          audience: config.get('APP_URL'),
+          // expiresIn: config.get('EXPIRES_IN'),
+        },
+      }),
   })],
   controllers: [AuthController],
   providers: [AuthService, LocalStrategy, JwtStrategy]

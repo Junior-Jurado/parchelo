@@ -10,5 +10,5 @@ export class CategoryDTO {
     @IsString()
     readonly name: string;
     
-    readonly interests: InterestDTO[];
+    readonly interests?: InterestDTO[];
 }

@@ -7,4 +7,8 @@ export class InterestDTO{
     @IsNotEmpty()
     @IsString()
     name: String;
+    @ApiProperty()
+    @IsNotEmpty()
+    @IsString()
+    category: String;
 }

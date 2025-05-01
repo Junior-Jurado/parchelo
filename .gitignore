@@ -1,48 +1,16 @@
-.api-users\node_modules
-.api-gateway\node_modules
-.microservice-users\node_modules
-.microservice-categories\node_modules
-.microservice-events\node_modules
-.microservice-interests\node_modules
-.microservice-locations\node_modules
-.microservice-notifications\node_modules
+# Ignorar archivos de entorno
+**/.env.development
 
-C:\Users\laura\OneDrive\Escritorio\parchelo\microservice-users\node_modules
-microservice-users/dist
-C:\Users\laura\OneDrive\Escritorio\parchelo\microservice-users\dist
+# Ignorar carpetas de build
+**/dist/
+**/build/
 
-microservice-users/dist
-.microservice-users/dist
-.microservice-users\dist
-microservice-users\dist
-C:/Users/laura/OneDrive/Escritorio/parchelo/microservice-users/dist
-C:\Users\laura\OneDrive\Escritorio\parchelo\microservice-users\dist
+# Ignorar node_modules
+**/node_modules/
 
-
-.api-gateway\.env.development
-.microservice-users\.env.development
-.microservice-categories\.env.development
-api-gateway/node_modules
-api-gateway/.env.development
-.microservice-events\.env.development
-.microservice-interests\.env.development
-.microservice-locations\.env.development
-.microservice-notifications\.env.development
-.api-users\.env.development
-
-.api-gateway\dist
-.microservice-users/dist
-.microservice-users\dist
-.microservice-interests\dist
-.microservice-locations\dist
-.microservice-notifications\dist
-.microservice-categories\dist
-.microservice-events\dist
-
-.db.json
-
-.api-gateway\dist
-
+# Otros archivos
+db.json
+logs
 
 # RECOMENDADO PONER AQUI
 # compiled output

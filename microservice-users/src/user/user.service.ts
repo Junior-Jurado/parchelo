@@ -10,7 +10,6 @@ import { RpcException } from '@nestjs/microservices';
 @Injectable()
 export class UserService{
     constructor(@InjectModel(USER.name) private readonly model: Model<IUser>){
-
     }
 
     async hashPassword(password: String):Promise<String>{
@@ -38,19 +37,18 @@ export class UserService{
         }
     }
 
-
     async findAll(): Promise<IUser[]>{
         return await this.model.find();
     }
 
     async findOne(id: String){
-        return await this.model.findOne(id);
+        return await this.model.findOne({_id: id});
     }
 
     async update(id: String, user: UserDTO): Promise<IUser> {
         const hash = await this.hashPassword(user.password);
         const userUpdated = {...user, password: hash};
-        return await this.model.findOneAndUpdate(id, userUpdated, {new: true})
+        return await this.model.findOneAndUpdate({_id: id}, userUpdated, {new: true})
 
     }
 
@@ -65,7 +63,7 @@ export class UserService{
         if(!user) {
             throw new RpcException({ 
                 statusCode: HttpStatus.BAD_REQUEST,
-                message: 'Correo y/o contraseña incorrectas'
+                message: 'Correo y/o contraseña incorrecto'
             });
         }
         return user;
@@ -81,6 +79,10 @@ export class UserService{
         }
         
         return isPasswordValid;
+    }
+
+    async addInterests(id: string, interests): Promise<IUser> {
+        return 
     }
 
 }

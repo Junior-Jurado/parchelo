@@ -27,6 +27,10 @@ export class CategoryService {
         return await this.model.findById(id).populate('interests');
     }
 
+    async findByName(name: string): Promise<ICategory> {
+        return await this.model.findOne({ name }).populate('interests');
+    }
+
     async update(id:String, categoryDTO: CategoryDTO): Promise<ICategory> {
         return await this.model.findByIdAndUpdate(id, categoryDTO, {new: true});
     }
