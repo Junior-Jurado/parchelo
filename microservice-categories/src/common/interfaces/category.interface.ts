@@ -1,7 +1,7 @@
 import { IInterest } from "./interest.interface";
 
 export interface ICategory extends Document{
-    id?: String;
-    name: String;
+    id?: string;
+    name: string;
     interests: IInterest[];
 }

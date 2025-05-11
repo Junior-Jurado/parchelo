@@ -3,7 +3,7 @@ import { UserDTO } from './dto/user.dto';
 import * as bcrypt from 'bcrypt';
 import { InjectModel } from '@nestjs/mongoose';
 import { USER } from 'src/common/models/models';
-import { Model } from 'mongoose';
+import mongoose, { Model } from 'mongoose';
 import { IUser } from 'src/common/interfaces/user.interface';
 import { RpcException } from '@nestjs/microservices';
 
@@ -41,8 +41,14 @@ export class UserService{
         return await this.model.find();
     }
 
-    async findOne(id: String){
-        return await this.model.findOne({_id: id});
+    async findOne(_id: String){
+        const user = await this.model.findById(_id);
+
+        if (!user) {
+            throw new Error(`Usuario con ID ${_id} no encontrado`);
+        }
+
+        return user;
     }
 
     async update(id: String, user: UserDTO): Promise<IUser> {
@@ -81,8 +87,19 @@ export class UserService{
         return isPasswordValid;
     }
 
-    async addInterests(id: string, interests): Promise<IUser> {
-        return 
+    async addInterests(_id: string, data) {//: Promise<IUser> {
+        const user = await this.model.findById(_id);
+
+        if (!user) {
+            throw new Error(`El usuario con ID ${_id} no encontrado`);
+        }
+        user.categories = data.map(item => ({
+            category: item.category,
+            interests: item.interests,
+        }));
+        // console.log(data);
+        // user.categories = []
+        return await user.save();
     }
 
 }

@@ -14,6 +14,11 @@ export class CategoryService {
         private readonly model: Model<ICategory>
     ) {}
 
+    private removeDiacritics(text: string): string {
+        return text.normalize('NFD').replace(/[\u0300-\u036f]/g, '');
+    }
+  
+
     async create(categoryDTO: CategoryDTO): Promise<ICategory> {
         const newCategory = new this.model(categoryDTO);
         return await newCategory.save();
@@ -27,10 +32,21 @@ export class CategoryService {
         return await this.model.findById(id).populate('interests');
     }
 
-    async findByName(name: string): Promise<ICategory> {
-        return await this.model.findOne({ name }).populate('interests');
+    async findByName(name: string): Promise<ICategory | null> {
+        const normalizeName = this.removeDiacritics(name).toLowerCase();
+    
+        const categories = await this.model.find().populate('interests');
+    
+        // Retorna null si no encuentra ninguna categoría que coincida
+        const foundCategory = categories.find((cat) => {
+            const normalizedCategory = this.removeDiacritics(cat.name).toLowerCase();
+            return normalizeName === normalizedCategory;
+        });
+    
+        return foundCategory || null;
     }
 
+    
     async update(id:String, categoryDTO: CategoryDTO): Promise<ICategory> {
         return await this.model.findByIdAndUpdate(id, categoryDTO, {new: true});
     }

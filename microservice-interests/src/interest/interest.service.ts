@@ -44,4 +44,31 @@ export class InterestService {
             message: 'Interest Deleted'
         }
     }
+
+    async validateInterests(interests: string[]): Promise<IInterest[] | string> {
+        const allInterests = await this.model.find();
+        const foundInterests: IInterest[] = [];
+    
+        for (const name of interests) {
+            const normalizedName = this.removeDiacritics(name).toLowerCase();
+    
+            const match = allInterests.find((int) => {
+                const dbName = this.removeDiacritics(int.name).toLowerCase();
+                return dbName === normalizedName;
+            });
+    
+            if (!match) {
+                return `El interés ${name} no existe.`;
+            }
+    
+            foundInterests.push(match);
+        }
+    
+        return foundInterests;
+    }
+
+    private removeDiacritics(str: string): string {
+        return str.normalize("NFD").replace(/[\u0300-\u036f]/g, "");
+    }
+    
 }

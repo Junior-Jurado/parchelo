@@ -24,6 +24,7 @@ export enum InterestMSG {
     FIND_ONE = 'FIND_INTEREST',
     UPDATE = 'UPDATE_INTEREST',
     DELETE = 'DELETE_INTEREST',
+    VALIDATE = 'VALIDATE_INTERESTS',
 }
 
 export enum CategoryMSG {

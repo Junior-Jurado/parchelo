@@ -1,4 +1,4 @@
 export interface IInterest extends Document{
-    id?: String;
-    name: String;
+    id?: string;
+    name: string;
 }

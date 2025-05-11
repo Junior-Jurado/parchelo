@@ -33,4 +33,9 @@ export class InterestController {
     delete(@Payload() id: String) {
         return this.interestService.delete(id);
     }
+
+    @MessagePattern(InterestMSG.VALIDATE)
+    validateInterests(@Payload() payload) {
+        return this.interestService.validateInterests(payload)
+    }
 }

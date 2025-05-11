@@ -13,5 +13,5 @@ export interface IUser extends Document{
     birthdate: Date;
     created_at: Date;
     updated_at: Date;
-    category: ICategory[];
+    categories: ICategory[];
 }

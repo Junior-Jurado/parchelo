@@ -1,7 +1,7 @@
 import { ICategory } from "./category.interface";
 
 export interface IUser{
-    id?: String;
+    // id?: String;
     name: String;
     last_name: String;
     email: String;
@@ -13,5 +13,5 @@ export interface IUser{
     birthdate: Date;
     created_at: Date;
     updated_at: Date;
-    category: ICategory[];
+    categories: ICategory[];
 }

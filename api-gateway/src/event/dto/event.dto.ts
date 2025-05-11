@@ -44,7 +44,7 @@ export class EventDTO {
     @ApiProperty()
     @IsNotEmpty()
     @IsString()
-    readonly category: string;
+    readonly interest: Types.ObjectId;
 
     @ApiProperty()
     @IsNotEmpty()

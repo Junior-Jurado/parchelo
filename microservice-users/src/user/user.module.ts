@@ -3,8 +3,9 @@ import { UserController } from './user.controller';
 import { UserService } from './user.service';
 import { MongooseModule } from '@nestjs/mongoose';
 import { UserSchema } from './schema/user.schema';
-import { CATEGORY, USER } from 'src/common/models/models';
+import { CATEGORY, USER, INTEREST } from 'src/common/models/models';
 import { CategorySchema } from './schema/category.schema';
+import { InterestSchema } from './schema/interest.schema';
 
 @Module({
     imports:[
@@ -17,6 +18,10 @@ import { CategorySchema } from './schema/category.schema';
                 name: CATEGORY.name,
                 useFactory: () => CategorySchema.plugin(require('mongoose-autopopulate')),
             }, 
+            {
+                name: INTEREST.name,
+                useFactory: () => InterestSchema.plugin(require('mongoose-autopopulate'))
+            },
         ]), 
     ],
     controllers: [UserController],

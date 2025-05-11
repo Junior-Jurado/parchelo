@@ -1,25 +1,24 @@
 [
     {
-        "categoria": "Deportes",
-        "intereses": ["Fútbol", "Baloncesto", "Volleyball", "Fútsal", "Tennis", "Ultimate", "Beisbol", "Ciclismo"]
+        "category": "Deportes",
+        "interests": ["Fútbol", "Baloncesto", "Volleyball", "Fútsal", "Tennis", "Ultimate", "Beisbol", "Ciclismo"]
     },
     {
-        "categoria": "Al aire libre",
-        "intereses": ["Caminata", "Picnic", "Bici Tour", "Fotografía", "Acampada", "Festival", "Tarde de Juegos"]
+        "category": "Al aire libre",
+        "interests": ["Caminata", "Picnic", "Bici Tour", "Fotografía", "Acampada", "Festival", "Tarde de Juegos"]
     },
     {
-        "categoria": "Arte y cultura",
-        "intereses": ["Cine", "Concierto", "Museos", "Poesia", "Pintura", "Improvisacion", "Gastronomía"]
+        "category": "Arte y cultura",
+        "interests": ["Cine", "Concierto", "Museos", "Poesia", "Pintura", "Improvisacion", "Gastronomía"]
     },
     {
-        "categoria": "Juegos",
-        "intereses": ["Scape room", "Karaoke", "Juegos de mesa", "Ajedrez", "Videojuegos"]
+        "category": "Juegos",
+        "interests": ["Scape room", "Karaoke", "Juegos de mesa", "Ajedrez", "Videojuegos"]
     },
     {
-        "categoria": "Bienestar",
-        "intereses": ["Yoga", "Gimnasio", "Mindfulness", "Brunch", "Coworking"]
+        "category": "Bienestar",
+        "interests": ["Yoga", "Gimnasio", "Mindfulness", "Brunch", "Coworking"]
     }
-
 ]
 
 
